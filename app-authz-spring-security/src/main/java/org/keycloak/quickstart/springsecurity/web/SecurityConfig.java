@@ -62,7 +62,6 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
 
             private KeycloakDeployment keycloakDeployment;
 
-            @Override
             public KeycloakDeployment resolve(HttpFacade.Request facade) {
                 if (keycloakDeployment != null) {
                     return keycloakDeployment;

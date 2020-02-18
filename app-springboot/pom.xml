@@ -12,7 +12,7 @@
     <name>Spring Boot Keycloak Sample</name>
     <description>Spring Boot Keycloak Sample</description>
     <properties>
-        <springboot-version>2.0.3.RELEASE</springboot-version>
+        <springboot-version>2.2.2.RELEASE</springboot-version>
         <httpclient.version>4.5.3</httpclient.version>
         <spring-mvc-cache-control.version>1.1.1-RELEASE</spring-mvc-cache-control.version>
         <spring-boot-starter-security.version>1.4.2.RELEASE</spring-boot-starter-security.version>
@@ -29,6 +29,7 @@
         </dependencies>
     </dependencyManagement>
     <dependencies>
+        
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
@@ -41,6 +42,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-freemarker</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
@@ -50,7 +52,13 @@
             <artifactId>spring-boot-starter-security</artifactId>
             <version>${spring-boot-starter-security.version}</version>
         </dependency>
-
+        
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>${httpclient.version}</version>
+        </dependency>
+        
         <!-- KeyCloak -->
         <dependency>
             <groupId>org.keycloak</groupId>
@@ -91,12 +99,7 @@
             <artifactId>keycloak-test-helper</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <version>${httpclient.version}</version>
-            <scope>test</scope>
-        </dependency>
+        
         <dependency>
             <groupId>org.glassfish</groupId>
             <artifactId>javax.json</artifactId>
