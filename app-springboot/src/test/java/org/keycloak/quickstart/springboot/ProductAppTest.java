@@ -33,19 +33,19 @@ public class ProductAppTest {
     public static void setup() throws IOException {
         TestsHelper.baseUrl = "http://localhost:8080";
         //TestsHelper.keycloakBaseUrl  = "set keycloak server docker IP"
-        TestsHelper.testRealm="quickstart";
-        TestsHelper.initialAccessTokenCount = 3;
-        TestsHelper.importTestRealm("admin","admin","/quickstart-realm.json");
-        TestsHelper.createDirectGrantClient();
-        TestsHelper.createClient(ClientBuilder.create("test-demo").baseUrl(TestsHelper.baseUrl)
-                .rootUrl("http://localhost:8080").accessType(PUBLIC));
-        TestsHelper.createClient(ClientBuilder.create("product-service").accessType(BEARER_ONLY));
+        // TestsHelper.testRealm="quickstart";
+        // TestsHelper.initialAccessTokenCount = 3;
+        // TestsHelper.importTestRealm("admin","admin","/quickstart-realm.json");
+        // TestsHelper.createDirectGrantClient();
+        // TestsHelper.createClient(ClientBuilder.create("test-demo").baseUrl(TestsHelper.baseUrl)
+        //         .rootUrl("http://localhost:8080").accessType(PUBLIC));
+        // TestsHelper.createClient(ClientBuilder.create("product-service").accessType(BEARER_ONLY));
 
     }
 
     @AfterClass
     public static void cleanUp() throws IOException{
-        TestsHelper.deleteRealm("admin","admin",TestsHelper.testRealm);
+        // TestsHelper.deleteRealm("admin","admin",TestsHelper.testRealm);
     }
 
     @Test
@@ -58,7 +58,7 @@ public class ProductAppTest {
     public void testLogin() throws IOException {
         HtmlPage page = this.webClient.getPage("http://localhost:8080/products");
         ((HtmlInput)page.getElementById("username")).setValueAttribute("alice");
-        ((HtmlInput)page.getElementById("password")).setValueAttribute("password");
+        ((HtmlInput)page.getElementById("password")).setValueAttribute("alice");
         HtmlPage protectedPage = page.getElementByName("login").click();
         Assert.assertTrue(protectedPage.getTitleText().contains("Product Page"));
     }
@@ -67,7 +67,7 @@ public class ProductAppTest {
     public void testLogout() throws IOException {
         HtmlPage page = this.webClient.getPage("http://localhost:8080/products");
         ((HtmlInput)page.getElementById("username")).setValueAttribute("alice");
-        ((HtmlInput)page.getElementById("password")).setValueAttribute("password");
+        ((HtmlInput)page.getElementById("password")).setValueAttribute("alice");
         HtmlPage protectedPage = page.getElementByName("login").click();
         HtmlPage landingPage = protectedPage.getElementById("logout").click();
         Assert.assertTrue(landingPage.getTitleText().contains("Landing Page"));
