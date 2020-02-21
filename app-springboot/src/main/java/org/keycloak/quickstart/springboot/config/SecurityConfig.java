@@ -20,6 +20,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Scope;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.authority.mapping.SimpleAuthorityMapper;
@@ -34,6 +35,7 @@ import org.springframework.security.web.authentication.session.SessionAuthentica
 @Configuration
 @EnableWebSecurity
 @ComponentScan(basePackageClasses = KeycloakSecurityComponents.class)
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
 
     @Autowired
@@ -77,7 +79,7 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
         super.configure(http);
         http
                 .authorizeRequests()
-                .antMatchers("/products*").hasRole("USER")
+                // .antMatchers("/products*").hasRole("USER")
                 .anyRequest().permitAll();
 
     }

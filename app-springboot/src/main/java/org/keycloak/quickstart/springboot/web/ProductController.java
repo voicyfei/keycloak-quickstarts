@@ -17,19 +17,22 @@
 package org.keycloak.quickstart.springboot.web;
 
 import java.security.Principal;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import net.rossillo.spring.web.mvc.CacheControl;
-import net.rossillo.spring.web.mvc.CachePolicy;
+
 import org.keycloak.common.util.KeycloakUriBuilder;
 import org.keycloak.constants.ServiceUrlConstants;
 import org.keycloak.quickstart.springboot.service.ProductService;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import net.rossillo.spring.web.mvc.CacheControl;
+import net.rossillo.spring.web.mvc.CachePolicy;
 
 
 @Controller
@@ -41,6 +44,7 @@ public class ProductController {
         
         private @Autowired HttpServletRequest request;
 
+        @PreAuthorize("hasRole('ROLE_USER')")
 	@RequestMapping(value = "/products", method = RequestMethod.GET)
 	public String handleCustomersRequest(Principal principal, Model model) {
 			model.addAttribute("products", productService.getProducts());
